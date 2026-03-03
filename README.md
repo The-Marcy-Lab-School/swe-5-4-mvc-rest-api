@@ -35,19 +35,18 @@ Short response questions can be found in the `short-response.md` file. Write you
 
 ### Grading
 
-Your grade on this assignment will be determined by the number of requirements you complete. This assignment has 20 requirements:
+Your grade on the coding portion assignment will be determined by the number of requirements you complete. This assignment has 20 requirements:
 - 6 model requirements
 - 8 endpoint/controller requirements
-- 1 deployment requirement
 - 5 frontend requirements
+- 1 deployment requirement
 
 To earn 75% or higher (15/20), complete the model and endpoint/controller requirements. The frontend and deployment requirements bring you to 100%.
 
-**Model Requirements**
+**Model Requirements (6 points)**
 
 - [ ] A collection of objects is managed by the server API
 - [ ] Every object in the collection has a unique `id` and at least two (2) additional properties
-- [ ] The model is stored in a file in the `model`
 
 * Interactions with the data are provided by a `class` with at least:
 
@@ -56,7 +55,7 @@ To earn 75% or higher (15/20), complete the model and endpoint/controller requir
   - [ ] a `static` method to **update** an existing resource.
   - [ ] a `static` method to **delete** an existing resource.
 
-**Endpoint / Controller Requirements**
+**Endpoint / Controller Requirements (8 points)**
 
 * The server has endpoints including at least:
   - [ ] one `GET` method
@@ -69,17 +68,17 @@ To earn 75% or higher (15/20), complete the model and endpoint/controller requir
 - [ ] All endpoints use plural nouns (e.g. `/api/fellows`), NOT verbs (e.g. `/api/getFellows`)
 - [ ] Error codes are used appropriately
 
-**Deployment Requirements**
-
-- [ ] Your application is deployed using Render and the public URL is added to the top of this README.
-
-**Frontend Requirements**
+**Frontend Requirements (5 points)**
 
 - [ ] The server serves a frontend application at `/` using `express.static()` middleware.
 - [ ] The frontend application can send a `GET request` for and render the collection of resources from the server's "database"
 - [ ] The frontend application can send a `POST request` to create a new resource in the server's "database".
 - [ ] The frontend application can send a `PATCH request` to update an existing resource in the server's "database".
 - [ ] The frontend application can send a `DELETE request` to delete an existing resource in the server's "database".
+
+**Deployment Requirements (1 point)**
+
+- [ ] Your server application is deployed using Render and the public URL is added to the top of this README.
 
 ### Step 1 — Explore the Provided Code
 
