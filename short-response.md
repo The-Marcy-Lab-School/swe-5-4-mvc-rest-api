@@ -1,41 +1,55 @@
 # Short Response Questions
 
-Answer each question below in your own words. Aim for 3–5 sentences per answer. Be specific — use the exact terms and concepts from the lesson.
+Answer each question below in your own words. Aim for 3–5 sentences per answer. Be specific — use exact terms and concepts from the lesson.
 
-Your responses will each be evaluated out of 6 points. You can earn 3 points for writing quality and 3 points for the accuracy and precision of the technical content per question.
+Your responses will each be evaluated out of 3 points for writing quality and 3 points for technical accuracy (6 points per question, 30 points total).
 
 ---
 
-## Question 1
+## Question 1 — REST Principles
 
-Describe the role of each layer in the Model-View-Controller (MVC) architecture. Then identify which specific files in the Fellow Tracker app act as the Model, View, and Controller.
+The Todo Tracker API is a **RESTful** API. Identify at least **3 specific design decisions** in the API that make it RESTful, and explain what each one communicates to a client developer. Consider the URL structure, HTTP methods, and status codes used.
 
 **Your answer here**:
 
 ---
 
-## Question 2
+## Question 2 — MVC Layers
 
-What is "separation of concerns," and why does it matter as an application grows? What specific problems arise when all logic lives in a single `index.js` file, and how does splitting code into models, controllers, and views address those problems?
-
-**Your answer here**:
-
----
-
-## Question 3
-
-A controller receives a `PATCH /api/fellows/:id` request and needs to update a fellow's name. Walk through which logic belongs in the controller and which belongs in the model. 
+Describe the role of each layer in the Model-View-Controller (MVC) architecture. Then, using the Todo Tracker, identify a specific line of code that belongs in each layer and explain why.
 
 **Your answer here**:
 
 ---
 
-## Question 4
+## Question 3 — Separation of Concerns
 
-The `Fellow` model uses `static` methods like `Fellow.create()` and `Fellow.find()` instead of regular instance methods. What is the rationale behind using a `class` in this way?
-
-How is this similar to how the built-in `Math` object works, and why does it make sense for a model that manages a shared collection of data?
+What problem is caused by mixing data logic and request/response logic in a single file? What does separating them into a model and controller enable? Be specific about what gets harder and what gets easier.
 
 **Your answer here**:
 
 ---
+
+## Question 4 — Request Lifecycle
+
+Walk through what happens, step by step, when the frontend sends `PATCH /api/todos/3` to toggle a todo's `isDone` field. Name each file and function in your MVC structure that gets involved, in the order it runs, and describe what it does.
+
+**Your answer here**:
+
+---
+
+## Question 5 — Code Sorting
+
+Below is a `createTodo` function that does everything in one place. For each numbered line, identify whether it belongs in the **model** or the **controller**, and explain why.
+
+```js
+const createTodo = (req, res) => {
+  /* 1 */ const { task } = req.body;
+  /* 2 */ if (!task) return res.status(400).send({ message: 'task is required' });
+  /* 3 */ const newTodo = { id: getId(), task, isDone: false };
+  /* 4 */ todos.push(newTodo);
+  /* 5 */ res.status(201).send(newTodo);
+};
+```
+
+**Your answer here**:

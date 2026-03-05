@@ -1,20 +1,8 @@
 const express = require('express');
 const path = require('path');
 
-// Instead of defining all of the controllers in this file, we've moved them to their own folder
-const {
-  listFellows,
-  findFellow,
-  createFellow,
-  updateFellow,
-  deleteFellow
-} = require('./controllers/fellowControllers');
-
 const app = express();
-let pathToFrontend = path.join(__dirname, '../frontend');
-if (process.env.NODE_ENV === 'production') {
-  pathToFrontend = path.join(__dirname, '../frontend/dist');
-}
+const pathToFrontend = path.join(__dirname, '../frontend');
 
 ////////////////////////
 // Middleware
@@ -31,20 +19,54 @@ app.use(express.static(pathToFrontend));
 app.use(express.json());
 
 ////////////////////////
+// In-Memory Database
+////////////////////////
+
+
+// Increments and returns a unique id each time it is called.
+let id = 1;
+const getId = () => id++;
+
+// Seed data — do not remove
+const todos = [
+  { id: getId(), task: 'Buy groceries', isDone: false },
+  { id: getId(), task: 'Walk the dog', isDone: true },
+  { id: getId(), task: 'Read a book', isDone: false },
+];
+
+////////////////////////
 // Endpoints
 ////////////////////////
 
-app.get('/api/fellows', listFellows);
-app.get('/api/fellows/:id', findFellow);
-app.post('/api/fellows', createFellow);
-app.patch('/api/fellows/:id', updateFellow);
-app.delete('/api/fellows/:id', deleteFellow);
+// TODO: GET /api/todos
+// Response: 200, array of all todos
 
-app.get('*', (req, res, next) => {
-  if (req.originalUrl.startsWith('/api')) return next();
-  res.sendFile(pathToFrontend + '/index.html');
-});
+
+// TODO: GET /api/todos/:id
+// Response: 200, single todo object
+// Error: 404 if no todo with that id
+
+
+// TODO: POST /api/todos
+// Request body: { task }
+// Response: 201, the newly created todo object
+// Error: 400 if task is missing from the request body
+
+
+// TODO: PATCH /api/todos/:id
+// Request body: { isDone }
+// Response: 200, the updated todo object
+// Error: 404 if no todo with that id
+
+
+// TODO: DELETE /api/todos/:id
+// Response: 204, no content
+// Error: 404 if no todo with that id
+
+
+// TODO: Catch-all handler — send a 404 JSON error for unmatched /api routes,
+// or serve index.html for all other routes (SPA fallback)
 
 
 const port = 8080;
-app.listen(port, () => console.log(`listening at http://localhost:${port}`));
+app.listen(port, () => console.log(`Listening at http://localhost:${port}`));

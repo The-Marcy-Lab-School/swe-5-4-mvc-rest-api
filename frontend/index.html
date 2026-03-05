@@ -3,19 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fellow Tracker</title>
+    <title>Todo Tracker</title>
     <link rel="stylesheet" href="/src/style.css">
   </head>
   <body>
     <main>
-      <h1>Fellow Tracker</h1>
+      <h1>Todo Tracker</h1>
 
-      <form id="add-fellow-form">
-        <input type="text" id="fellow-name-input" placeholder="Fellow Name" required aria-label="Fellow Name"/>
-        <button type="submit">Add Fellow</button>
+      <form id="add-todo-form">
+        <input type="text" id="todo-task-input" placeholder="New task..." required aria-label="New task"/>
+        <button type="submit">Add</button>
       </form>
 
-      <ul id="fellows-list"></ul>
+      <ul id="todos-list"></ul>
 
       <p id="error" class="hidden"></p>
     </main>

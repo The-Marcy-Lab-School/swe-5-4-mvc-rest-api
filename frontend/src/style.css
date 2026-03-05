@@ -79,8 +79,16 @@ li span {
   flex: 1;
 }
 
-li input {
-  flex: 1;
+li.done span {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+input[type="checkbox"] {
+  width: 1.1rem;
+  height: 1.1rem;
+  cursor: pointer;
+  accent-color: #4caf50;
 }
 
 #error {

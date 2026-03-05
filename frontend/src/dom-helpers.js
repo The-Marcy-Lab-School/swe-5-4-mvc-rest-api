@@ -1,29 +1,27 @@
-export const renderFellows = (fellows) => {
-  const list = document.querySelector('#fellows-list');
+export const renderTodos = (todos) => {
+  const list = document.querySelector('#todos-list');
   list.innerHTML = '';
 
-  fellows.forEach((fellow) => {
-    const { id, name } = fellow;
+  todos.forEach((todo) => {
+    const { id, task, isDone } = todo;
     const li = document.createElement('li');
     li.dataset.id = id;
+    if (isDone) li.classList.add('done');
 
-    const nameSpan = document.createElement('span');
-    nameSpan.textContent = name;
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = isDone;
+    checkbox.classList.add('toggle-btn');
+    checkbox.setAttribute('aria-label', `Mark "${task}" as ${isDone ? 'not done' : 'done'}`);
 
-    const editInput = document.createElement('input');
-    editInput.type = 'text';
-    editInput.value = name;
-    editInput.classList.add('hidden');
-
-    const editBtn = document.createElement('button');
-    editBtn.textContent = 'Edit';
-    editBtn.classList.add('edit-btn');
+    const taskSpan = document.createElement('span');
+    taskSpan.textContent = task;
 
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = 'Delete';
     deleteBtn.classList.add('delete-btn');
 
-    li.append(nameSpan, editInput, editBtn, deleteBtn);
+    li.append(checkbox, taskSpan, deleteBtn);
     list.append(li);
   });
 };

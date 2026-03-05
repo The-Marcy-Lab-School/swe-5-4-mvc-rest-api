@@ -1,29 +1,29 @@
-import { getFellows, createFellow, updateFellow, deleteFellow } from './fetch-helpers.js';
-import { renderFellows, renderError } from './dom-helpers.js';
+import { getTodos, createTodo, updateTodo, deleteTodo } from './fetch-helpers.js';
+import { renderTodos, renderError } from './dom-helpers.js';
 
-const loadFellows = async () => {
-  const { data, error } = await getFellows();
+const loadTodos = async () => {
+  const { data, error } = await getTodos();
   if (error) return renderError(error.message);
   renderError();
-  renderFellows(data);
+  renderTodos(data);
 };
 
 // Handle Form Submissions
-const handleAddFellow = async (e) => {
+const handleAddTodo = async (e) => {
   e.preventDefault();
-  const input = document.querySelector('#fellow-name-input');
-  const fellowName = input.value.trim();
-  if (!fellowName) return;
+  const input = document.querySelector('#todo-task-input');
+  const task = input.value.trim();
+  if (!task) return;
 
-  const { error } = await createFellow(fellowName);
+  const { error } = await createTodo(task);
   if (error) return renderError(error.message);
 
   input.value = '';
-  await loadFellows();
+  await loadTodos();
 };
 
-// Handle Delete, Edit, and Save Clicks
-const handleFellowsListClick = async (e) => {
+// Handle Delete and Toggle Clicks
+const handleTodosListClick = async (e) => {
   const clickedListItem = e.target.closest('li');
   if (!clickedListItem) return;
 
@@ -31,37 +31,23 @@ const handleFellowsListClick = async (e) => {
 
   // Handle Delete Clicks
   if (e.target.classList.contains('delete-btn')) {
-    const { error } = await deleteFellow(id);
+    const { error } = await deleteTodo(id);
     if (error) return renderError(error.message);
-    await loadFellows();
+    await loadTodos();
   }
 
-  // Handle Edit/Save Button Clicks
-  if (e.target.classList.contains('edit-btn')) {
-    // Get these elements INSIDE the clicked li
-    const nameSpan = clickedListItem.querySelector('span');
-    const editInput = clickedListItem.querySelector('input');
-    const editBtn = clickedListItem.querySelector('.edit-btn');
-
-    // Click on "Edit" --> Switch to Edit Mode
-    if (editBtn.textContent === 'Edit') {
-      nameSpan.classList.add('hidden');
-      editInput.classList.remove('hidden');
-      editBtn.textContent = 'Save';
-    }
-
-    // Click on "Save" --> Update the fellow and reload fellows
-    else {
-      const { error } = await updateFellow(id, editInput.value.trim());
-      if (error) return renderError(error.message);
-      await loadFellows();
-    }
+  // Handle Checkbox Toggle
+  if (e.target.classList.contains('toggle-btn')) {
+    const isDone = e.target.checked;
+    const { error } = await updateTodo(id, { isDone });
+    if (error) return renderError(error.message);
+    await loadTodos();
   }
 };
 
 // Add Event Listeners
-document.querySelector('#add-fellow-form').addEventListener('submit', handleAddFellow);
-document.querySelector('#fellows-list').addEventListener('click', handleFellowsListClick);
+document.querySelector('#add-todo-form').addEventListener('submit', handleAddTodo);
+document.querySelector('#todos-list').addEventListener('click', handleTodosListClick);
 
-// Load Fellows on Page Load
-loadFellows();
+// Load Todos on Page Load
+loadTodos();
