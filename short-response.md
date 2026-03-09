@@ -14,15 +14,7 @@ The Todo Tracker API is a **RESTful** API. Identify at least **3 specific design
 
 ---
 
-## Question 2 — MVC Layers
-
-Describe the role of each layer in the Model-View-Controller (MVC) architecture. Then, using the Todo Tracker, identify a specific line of code that belongs in each layer and explain why.
-
-**Your answer here**:
-
----
-
-## Question 3 — Separation of Concerns
+## Question 2 — Separation of Concerns
 
 What problem is caused by mixing data logic and request/response logic in a single file? What does separating them into a model and controller enable? Be specific about what gets harder and what gets easier.
 
@@ -30,7 +22,7 @@ What problem is caused by mixing data logic and request/response logic in a sing
 
 ---
 
-## Question 4 — Request Lifecycle
+## Question 3 — Request Lifecycle
 
 Walk through what happens, step by step, when the frontend sends `PATCH /api/todos/3` to toggle a todo's `isDone` field. Name each file and function in your MVC structure that gets involved, in the order it runs, and describe what it does.
 
@@ -38,7 +30,7 @@ Walk through what happens, step by step, when the frontend sends `PATCH /api/tod
 
 ---
 
-## Question 5 — Code Sorting
+## Question 4 — Code Sorting
 
 Below is a `createTodo` function that does everything in one place. For each numbered line, identify whether it belongs in the **model** or the **controller**, and explain why.
 
