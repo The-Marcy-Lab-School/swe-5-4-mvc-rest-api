@@ -24,7 +24,7 @@ What problem is caused by mixing data logic and request/response logic in a sing
 
 ## Question 3 — Request Lifecycle
 
-Walk through what happens, step by step, when the frontend sends `PATCH /api/todos/3` to toggle a todo's `isDone` field. Name each file and function in your MVC structure that gets involved, in the order it runs, and describe what it does.
+Walk through what happens, step by step, when the user clicks a checkbox to toggle a todo's `isDone` field. Name each file and function in your MVC structure that gets involved, in the order it runs, and describe what it does.
 
 **Your answer here**:
 
